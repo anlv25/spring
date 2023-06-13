@@ -15,7 +15,10 @@ public class GatewayConfig {
                         .path("/gallery/*")
                         .filters(f -> f.stripPrefix(1))
                         .uri("lb://gallery-service"))
-
+                .route("r2", r->r
+                        .path("/image/*")
+                        .filters(f -> f.stripPrefix(1))
+                        .uri("lb://image-service"))
                 .build();
     }
 }

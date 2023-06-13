@@ -2,6 +2,7 @@ package com.example.gallery.controller;
 
 import com.example.gallery.model.Gallery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,8 @@ public class HomeController {
 
     @Autowired
     private Environment env;
-
+    @Value("${server.port}")
+    private String port;
     @RequestMapping("/")
     public String home() {
         // This is useful for debugging
@@ -37,6 +39,11 @@ public class HomeController {
         gallery.setImages(images);
 
         return gallery;
+    }
+    @RequestMapping("/port")
+    public String getPort() {
+
+        return port;
     }
 
     // -------- Admin Area --------
